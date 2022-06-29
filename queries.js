@@ -1,16 +1,6 @@
 
-const config = require('./config');
+import pool from './config.js';
 
-// Create Database Connection
-
-const Pool = require('pg').Pool
-const pool = new Pool({
-  user: config.db.user,
-  host: config.db.host,
-  database: config.db.database,
-  password: config.db.password,
-  port: config.db.port,
-});
 
 // pool.connect(function (err) {
 //   if (err) {
@@ -25,15 +15,25 @@ const pool = new Pool({
 //   })
 // });
 
-const getTasks = (request, response) => {
-  pool.query('SELECT * FROM tasks ORDER BY id DESC', (error, results) => {
-    if (error) {
-      throw error
-      console.log('error', error);
-    }
-    console.log("result", results.rows);
-    return results.rows;
-  })
-}
+const getTasks = (req, res) => {
+  pool
+  .query('SELECT * FROM tasks ORDER BY id DESC')
+  .then(res =>  console.log(res.rows))
+  .catch(err => console.error('Error executing query', err.stack))
+};
 
-getTasks();
+const createTask = (req, res) => {
+  const {user_id, category, description, status} = req.body;
+  pool
+    .query(`Insert Into rate (user_id, movie_id, rate, type) Values($1,$2,$3,$4) RETURNING *`, [user_id, category, description, status])
+    .then(res => res.send(`Todo item added successfully`) )
+    .catch(err => res.send(`Query failed`, err))
+};
+const updateTask = (req, res) => {
+
+};
+const deleteTask = (req, res) => {
+
+};
+
+export default {getTasks, createTask};

@@ -1,4 +1,6 @@
-require('dotenv').config();
+import 'dotenv/config';
+import pg from "pg";
+const { Pool } = pg;
 
 const config = {
   db: {
@@ -10,4 +12,8 @@ const config = {
   }
 };
 
-module.exports = config;
+// Create Database Connection
+
+const pool = new Pool(config.db);
+
+export default pool;
