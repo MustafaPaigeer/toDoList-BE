@@ -25,4 +25,25 @@ router.post('/login', async (req, res) => {
   }
 });
 
-export default router;
+router.get('/refreshToken', (req, res) => {
+  try{
+    const refreshToken = req.cookies.refreshToken;
+    if(refreshToken === null) return res.status(401).json({error: 'Null Refresh Token'});
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_KEY, (error, user) => {
+      if(error) return res.status(403).json({error: error.message});
+      let tokens = jwtTokens(user);
+    });
+  }catch(erorr) {
+    res.status(401).json({error: error.message});
+  }
+ });
+ 
+ router.delete('/refreshToken', (req,res) => {
+  try {
+  res.clearCookie('refreshToken');
+  return res.status(200).json({message: 'refresh token deleted'})} catch (error) {
+    res.status(401).json({error: error.message});
+  }
+ });
+
+ export default router;
