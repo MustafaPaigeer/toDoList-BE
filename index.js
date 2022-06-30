@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import {dirname,join} from 'path';
 import {fileURLToPath} from 'url';
 import usersRouter from './routes/users.js';
+import authRouter from './routes/auth.js';
 import db from './queries.js';
 
 
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({extended: true,}));
 app.use('/', express.static(join(__dirname, 'public')));
 
 app.use('/user', usersRouter);
+app.use('/auth', authRouter);
 // app.get('/', (request, response) => {
 //   response.send('Welcome to home page')
 // });

@@ -15,6 +15,7 @@ import bcrypt from 'bcryptjs';
 //     pool.end();
 //   })
 // });
+
 const createUser = (req, res) => {
   const { username, email, password } = req.body;
   console.log('Password is: ', password)
