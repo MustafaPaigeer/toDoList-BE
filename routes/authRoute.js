@@ -34,7 +34,7 @@ router.get('/refreshToken', (req, res) => {
       let tokens = jwtTokens(user);
     });
   } catch (erorr) {
-    res.status(401).json({ error: error.message });
+    res.status(401).json({ error: "failed" });
   }
 });
 

@@ -32,7 +32,11 @@ const updateTask = (req, res) => {
   .catch(err => res.status(502).json({ error: err.message}))
 };
 const deleteTask = (req, res) => {
-
+  const {id, user_id} = req.body; 
+  pool
+  .query(`DELETE FROM tasks WHERE id=$1 RETURNING *`, [id])
+  .then(data => res.status(200).json({message: 'To do item deleted'}))
+  .catch(err => res.status(502).json({ error: err.message}))
 };
 
 export default { getTasks, createTask, updateTask, deleteTask, searchCatOrStat };

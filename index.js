@@ -28,15 +28,9 @@ app.use('/', express.static(join(__dirname, 'public')));
 
 app.use('/user', usersRouter);
 app.use('/auth', authRouter);
-// app.get('/', (request, response) => {
-//   response.send('Welcome to home page')
-// });
+
 app.use('/', tasksRouter);
 app.use('/task', tasksRouter);
-//app.get('/task/category', db.getTaskbyCategory)
-// app.put('/task/:id', db.updateTask);
-// app.post('/task/:id', db.createTask);
-// app.delete('/task/:id', db.deleteTask);
 
 
 app.listen(port, () => console.log(`App running on port ${port}.`));
