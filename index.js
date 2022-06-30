@@ -1,7 +1,16 @@
 import express, {json} from 'express';
-//import cors from 'cors';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
+import {dirname,join} from 'path';
+import {fileURLtoPath} from 'url';
 import db from './queries.js';
+dotenv.config();
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+
 
 const app = express();
 const port = 3000;
