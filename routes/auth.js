@@ -2,7 +2,7 @@ import express from "express";
 import pool from "../config.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-//import {jwtTokens} from "../utils/jwtHelper.js"
+import {jwtTokens} from "../utils/jwtHelpers.js"
 //import db from "../queries.js";
 
 const router = express.Router();
@@ -17,11 +17,12 @@ router.post('/login', async (req, res) => {
     const validPassword = await bcrypt.compare(password, users.rows[0].password);
     if(!validPassword) throw error;//return res.status(401).json({error: "Incorrect Email or Password"});
     // CREATE AND SEND JWt TOKEN
-    return res.status(200).json("success")
+    let tokens = jwtTokens(users.rows[0]);
+    res.cookie('refresh_token', tokens.refreshToken, {httpOnly:true});
+    res.json(tokens);
   } catch (error) {
-
+    res.status(401).json({error: "Incorrect Email or Password"});
   }
 });
-
 
 export default router;
