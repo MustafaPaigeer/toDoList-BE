@@ -1,4 +1,5 @@
-import express from 'express';
+import express, {json} from 'express';
+//import cors from 'cors';
 import bodyParser from 'body-parser';
 import db from './queries.js';
 
@@ -8,16 +9,17 @@ const port = 3000;
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true,}));
 
-
-
 // All routes
 
 // app.get('/', (request, response) => {
 //   response.send('Welcome to home page')
 // });
-app.get('/', db.getTasks)
-app.get('/task', db.getTasks)
-app.post('/task', db.createTask)
+app.get('/', db.getTasks);
+app.get('/task', db.getTasks);
+app.get('/task/category')
+app.put('/task/:id', db.update);
+app.post('/task/:id', db.createTask);
+app.delete('/task/:id', db.deleteTask);
 
 
 app.listen(
