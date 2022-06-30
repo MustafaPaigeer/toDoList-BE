@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({extended: true,}));
 // });
 app.get('/', db.getTasks);
 app.get('/task', db.getTasks);
-app.get('/task/category')
-app.put('/task/:id', db.update);
+//app.get('/task/category', db.getTaskbyCategory)
+app.put('/task/:id', db.updateTask);
 app.post('/task/:id', db.createTask);
 app.delete('/task/:id', db.deleteTask);
 
