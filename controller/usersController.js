@@ -10,6 +10,4 @@ const createUser = (req, res) => {
     .catch(err => res.status(500).json(`Query failed`, err))
 };
 
-
-
-export default { createUser};
+export default {createUser};

@@ -1,11 +1,10 @@
 import express from "express";
 import { authenticateToken } from "../middleware/authorization.js";
 //import pool from "../config.js";
-import db from "../queries.js";
+import db from "../controller/usersController.js";
 
 const router = express.Router();
 
-router.get('/', authenticateToken, db.getTasks);
 router.post('/register', db.createUser);
 
 

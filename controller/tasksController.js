@@ -23,4 +23,4 @@ const deleteTask = (req, res) => {
 
 };
 
-export default { createUser, getTasks, createTask, updateTask, deleteTask };
+export default { getTasks, createTask, updateTask, deleteTask };
