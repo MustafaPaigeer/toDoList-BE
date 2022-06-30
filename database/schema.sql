@@ -3,8 +3,8 @@ CREATE DATABASE todolist;
 CREATE TABLE users (
 	id serial PRIMARY KEY,
 	username VARCHAR ( 50 ) UNIQUE NOT NULL,
-	password VARCHAR ( 50 ) NOT NULL,
-	email VARCHAR ( 255 ) UNIQUE NOT NULL,
+	password TEXT NOT NULL,
+	email TEXT UNIQUE NOT NULL,
 	created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
@@ -13,7 +13,7 @@ CREATE TABLE tasks (
   id SERIAL PRIMARY KEY,
   user_id INT NOT NULL,
   category VARCHAR(50) NOT NULL,
-  description VARCHAR(200),
+  description TEXT,
   status VARCHAR(50),
   created_at TIMESTAMP NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMP NOT NULL DEFAULT NOW(),
