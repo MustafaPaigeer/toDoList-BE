@@ -1,6 +1,7 @@
 import pool from '../config.js';
 
 const getTasks = (req, res) => {
+  console.log('Header', req.headers['authorization'])
   pool
     .query('SELECT * FROM tasks ORDER BY id DESC')
     .then(data => res.status(200).json(data.rows))
@@ -24,7 +25,11 @@ const searchCatOrStat = (req, res) => {
 };
 
 const updateTask = (req, res) => {
-
+  const {id, user_id, category, description, status} = req.body; 
+  pool
+  .query(`UPDATE tasks set category = $1, description = $2, status=$3 WHERE id=$4 RETURNING *`, [category, description, status, id])
+  .then(data => res.status(200).json({message: 'To do item updated'}))
+  .catch(err => res.status(502).json({ error: err.message}))
 };
 const deleteTask = (req, res) => {
 
