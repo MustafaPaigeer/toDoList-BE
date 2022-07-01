@@ -2,7 +2,6 @@ import pool from '../config.js';
 
 // Get list of all to do items
 const getTasks = (req, res) => {
-  console.log(req.user.id)
   pool
     .query('SELECT * FROM tasks ORDER BY id DESC')
     .then(data => res.status(200).json(data.rows))
