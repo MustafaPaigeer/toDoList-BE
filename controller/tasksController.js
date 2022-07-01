@@ -1,4 +1,4 @@
-import pool from '../config.js';
+import pool from "../config/config.js";
 
 // Get list of all to do items
 const getTasks = (req, res) => {

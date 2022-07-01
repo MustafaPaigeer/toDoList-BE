@@ -1,4 +1,4 @@
-import pool from '../config.js';
+import pool from "../config/config.js";
 import bcrypt from 'bcryptjs';
 
 const createUser = (req, res) => {

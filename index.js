@@ -21,7 +21,7 @@ app.use(cors(corsOptions));
 app.use(json());
 app.use(cookieParser());
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true, }));
 
 app.use('/', express.static(join(__dirname, 'public')));
