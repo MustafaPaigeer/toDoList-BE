@@ -16,10 +16,10 @@ You can register a user account and login to your account. It uses Json Web Toke
 
 ## Routes
 
-POST: /user/register | Register new user
-POST: /auth/login | authenticate user for login
-GET: / | home (List of all tasks)
-GET: /task | list of all tasks
-POST: /task | Create new tasks
-PUT: /task/update | Update an existing task
-DELETE: /task/delete | Delete an existing task
+- POST: /user/register | Register new user
+- POST: /auth/login | authenticate user for login
+- GET: / | home (List of all tasks)
+- GET: /task | list of all tasks
+- POST: /task | Create new tasks
+- PUT: /task/update | Update an existing task
+- DELETE: /task/delete | Delete an existing task
