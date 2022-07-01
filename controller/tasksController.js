@@ -31,7 +31,7 @@ const updateTask = (req, res) => {
   const { id, user_id, category, description, status } = req.body;
   if (!(user_id === req.user.id)) return res.status(400).json({ Error: 'Every user can only update their own tasks' });
   pool
-    .query(`UPDATE tasks set category = $1, description = $2, status=$3 WHERE id=$4 RETURNING *`, [category, description, status, id])
+    .query(`UPDATE tasks set category = $1, description = $2, status=$3 WHERE id=$4`, [category, description, status, id])
     .then(data => res.status(200).json({ message: 'To do item updated' }))
     .catch(err => res.status(502).json({ error: err.message }))
 };
