@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('*', authenticateToken);
 router.get('/', controller.getTasks);
 router.get('/search/:key', controller.searchCatOrStat);
-router.post('/', authenticateToken ,controller.createTask);
+router.post('/', authenticateToken, controller.createTask);
 router.put('/update', authenticateToken, controller.updateTask);
 router.delete('/delete', authenticateToken, controller.deleteTask);
 

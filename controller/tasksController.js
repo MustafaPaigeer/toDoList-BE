@@ -29,7 +29,6 @@ const searchCatOrStat = (req, res) => {
 
 const updateTask = (req, res) => {
   const { id, user_id, category, description, status } = req.body;
-  console.log(req.user.id)
   if (!(user_id === req.user.id)) return res.status(400).json({ Error: 'Every user can only update their own tasks' });
   pool
     .query(`UPDATE tasks set category = $1, description = $2, status=$3 WHERE id=$4 RETURNING *`, [category, description, status, id])

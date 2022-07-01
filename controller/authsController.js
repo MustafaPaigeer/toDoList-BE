@@ -6,7 +6,7 @@ import { jwtTokens } from "../utils/jwtHelpers.js";
 
 const router = express.Router();
 
-const login =  async (req, res) => {
+const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const users = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
@@ -46,4 +46,4 @@ const logout = (req, res) => {
   }
 };
 
-export default {login, refreshToken, logout};
+export default { login, refreshToken, logout };
